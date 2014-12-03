@@ -85,8 +85,9 @@
                     }
                 });
 
-                $scope.$watch('columnMagnet', function(newValue, oldValue) {
+                var extractColumnMagnet = function(newValue, oldValue) {
                     if (newValue !== oldValue) {
+
                         var splittedColumnMagnet;
                         var columnMagnet = self.options.value('columnMagnet');
                         if (columnMagnet) {
@@ -100,7 +101,9 @@
                             self.columnMagnetUnit = undefined;
                         }
                     }
-                });
+                };
+                $scope.$watch('columnMagnet', extractColumnMagnet);
+                extractColumnMagnet(self.options.value('columnMagnet'));
 
                 $scope.$watchGroup(['shiftColumnMagnet', 'viewScale'], function(newValues, oldValues) {
                     if (newValues !== oldValues) {
